@@ -1,15 +1,13 @@
 import React from 'react'
 import axios from 'axios';
-import { View, Text, Image, Dimensions, ImageBackground, StyleSheet } from 'react-native'
+import { View, Text, Image, ImageBackground, StyleSheet } from 'react-native'
 import RootStore from "./src/mobx";
 import { Provider } from "mobx-react";
 import { SvgXml } from "react-native-svg";
+import AppNavigator from "./src/navigation";
 import TestSvg from './src/components/testSvg'
 import Btn from "./src/components/Btn";
 import { formatMoneyWithReg } from './src/lib/utils'
-const screenW = Math.round(Dimensions.get('window').width) // 360
-const screenH = Math.round(Dimensions.get('window').height) // 750
-// alert('screenH=' + screenH + 'screenW=' + screenW);
 
 // axios.get("https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata").then(console.log)
 
@@ -18,7 +16,8 @@ const screenH = Math.round(Dimensions.get('window').height) // 750
 console.log('调试');
 const App = () => <View style={styles.appContainer}>
   <Provider RootStore={RootStore}>
-    <ImageBackground style={styles.homeBg} source={require('./src/assets/img/collection/11.jpg')}>
+    <AppNavigator></AppNavigator>
+    {/* <ImageBackground style={styles.homeBg} source={require('./src/assets/img/collection/11.jpg')}>
       <View style={styles.homeSloganWare}>
         <Text style={styles.homeSlogan}>给</Text>
         <Text style={styles.homeSloganBig}>未来</Text>
@@ -28,14 +27,15 @@ const App = () => <View style={styles.appContainer}>
         <Text style={styles.homeAddUp}>已寄出 {formatMoneyWithReg(378562)} 封信</Text>
         <Btn></Btn>
       </View>
-    </ImageBackground>
+    </ImageBackground> */}
   </Provider>
 </View>
 
 const styles = StyleSheet.create({
   appContainer: {
-    width: '100%',
-    height: '100%'
+    // width: '100%',
+    // height: '100%'
+    flex: 1
   },
   homeBg: {
     width: '100%',
