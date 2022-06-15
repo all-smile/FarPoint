@@ -16,8 +16,8 @@ import { formatMoneyWithReg } from './src/lib/utils'
 console.log('调试');
 const App = () => <View style={styles.appContainer}>
   <Provider RootStore={RootStore}>
-    <AppNavigator></AppNavigator>
-    {/* <ImageBackground style={styles.homeBg} source={require('./src/assets/img/collection/11.jpg')}>
+    {/* <AppNavigator></AppNavigator> */}
+    <ImageBackground style={styles.homeBg} source={require('./src/assets/img/collection/11.jpg')}>
       <View style={styles.homeSloganWare}>
         <Text style={styles.homeSlogan}>给</Text>
         <Text style={styles.homeSloganBig}>未来</Text>
@@ -27,7 +27,7 @@ const App = () => <View style={styles.appContainer}>
         <Text style={styles.homeAddUp}>已寄出 {formatMoneyWithReg(378562)} 封信</Text>
         <Btn></Btn>
       </View>
-    </ImageBackground> */}
+    </ImageBackground>
   </Provider>
 </View>
 
