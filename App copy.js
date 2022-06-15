@@ -52,11 +52,11 @@ const App: () => Node = () => {
           }}>
           <Image
             style={{ width: 100, height: 200 }}
-            source={require('./src/img/cat.jpg')}
+            source={require('./src/assets/img/cat.jpg')}
           />
           {/* <Image
             style={{ width: "100%", height: "100%" }}
-            source={require('./src/img/gloading.gif')}
+            source={require('./src/assets/img/gloading.gif')}
           /> */}
           <Text style={{ color: "#333", fontSize: 20 }}>远点123</Text>
         </View>
