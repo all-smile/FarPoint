@@ -6,6 +6,7 @@
 - @react-navigation/native@^6.0.10
 - mobx@^6.6.0
 - mobx-react@^7.5.0
+- prettier@2.7.0
 
 ## 项目运行
 ```bash

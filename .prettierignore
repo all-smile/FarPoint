@@ -1,0 +1,9 @@
+node_modules/
+__tests__
+.bundle
+android
+ios
+yarn.lock
+.git
+.idea
+.vscode
