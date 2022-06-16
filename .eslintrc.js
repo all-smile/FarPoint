@@ -33,10 +33,27 @@ module.exports = {
     'no-var': 2, // 要求使用 let 或 const 而不是 var,
     'no-unused-vars': 2, // 禁止出现未使用过的变量
     'react/prop-types': 0, // 防止在react组件定义中缺少props验证
-    indent: ['error', 2], //缩进规则为2个空格
-    'react/jsx-indent': ['error', 2], //缩进规则为2个空格
-    'react/jsx-indent-props': ['error', 2], //缩进规则为2个空格
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }], //在JS文件中允许存在JSX语法
-    'global-require': 'off', //image指定source时要用require语句
+    'space-before-function-paren': 0, // 函数名和括号之间的空格
+    indent: ['off', 2], // 缩进规则为2个空格
+    'react/jsx-indent': ['error', 2], // 缩进规则为2个空格
+    'react/jsx-indent-props': ['error', 2], // 缩进规则为2个空格
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }], // 在JS文件中允许存在JSX语法
+    'global-require': 'off', // image指定source时要用require语句
+    'spaced-comment': [
+      // 注释后面要有空格 https://cn.eslint.org/docs/rules/spaced-comment
+      'error',
+      'always',
+      {
+        line: {
+          markers: ['/'],
+          exceptions: ['-', '+'],
+        },
+        block: {
+          markers: ['!'],
+          exceptions: ['*'],
+          balanced: true,
+        },
+      },
+    ],
   },
 };
