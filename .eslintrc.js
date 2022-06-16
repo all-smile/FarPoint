@@ -19,7 +19,7 @@ module.exports = {
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true,
-      // 支持装饰器
+      // 支持装饰器 否则报 '@inject' 错误
       "legacyDecorators": true,
     },
     "ecmaVersion": 12,
