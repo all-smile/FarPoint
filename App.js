@@ -10,8 +10,6 @@ import { formatMoneyWithReg } from './src/lib/utils'
 
 // axios.get("https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata").then(console.log)
 
-// <Image style={{ width: '100%', height: '100%' }} source={require('./src/assets/img/collection/11.jpg')}></Image>
-
 console.log('调试');
 const App = () => <View style={styles.appContainer}>
   <Provider RootStore={RootStore}>
