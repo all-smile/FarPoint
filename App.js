@@ -1,11 +1,10 @@
 import React from 'react'
-import axios from 'axios';
-import { View, Text, Image, ImageBackground, StyleSheet } from 'react-native'
+// import axios from 'axios';
+import { View, Text, ImageBackground, StyleSheet } from 'react-native'
 import RootStore from "./src/mobx";
 import { Provider } from "mobx-react";
-import { SvgXml } from "react-native-svg";
-import AppNavigator from "./src/navigation";
-import TestSvg from './src/components/testSvg'
+// import { SvgXml } from "react-native-svg";
+// import AppNavigator from "./src/navigation";
 import Btn from "./src/components/Btn";
 import { formatMoneyWithReg } from './src/lib/utils'
 
