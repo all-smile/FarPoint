@@ -5,7 +5,8 @@
       ".js",
       ".vue",
       ".jsx",
-      ".tsx"
+      ".tsx",
+      ".json"
     ]
   },
   "editor.codeActionsOnSave": {
