@@ -1,5 +1,5 @@
-import { View, Text, Button } from 'react-native'
-import React from 'react'
+import { View, Text, Button } from 'react-native';
+import React from 'react';
 
 export default function DetailScreen({ route, navigation }) {
   const { itemId, otherParam } = route.params;

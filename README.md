@@ -1,7 +1,9 @@
 # FarPoint 远点
+
 采用 react-native + Mobx 开发手机端软件，主要功能是给未来写封信
 
 ## 核心依赖
+
 - react-native@0.68.2
 - @react-navigation/native@^6.0.10
 - mobx@^6.6.0
@@ -9,6 +11,7 @@
 - prettier@2.7.0
 
 ## 项目运行
+
 ```bash
 git clone https://github.com/all-smile/FarPoint.git
 cd FarPoint
@@ -18,8 +21,8 @@ android: yarn android
 ios: yarn ios
 ```
 
+## Git 规范 (\*建议)
 
-## Git 规范 (*建议)
 - feat ：新功能
 - fix ：修复 bug
 - chore ：对构建或者辅助工具的更改

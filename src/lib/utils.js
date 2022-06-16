@@ -15,6 +15,6 @@ export function formatMoneyWithReg(number) {
 
 // 判断是否包含中文
 export function hasHan(str) {
-  let reg = /[\u4e00-\u9fa5]/g
-  return reg.test(str)
+  let reg = /[\u4e00-\u9fa5]/g;
+  return reg.test(str);
 }

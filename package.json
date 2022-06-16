@@ -1,5 +1,5 @@
 {
-    "name": "farpoint",
+    "name": "myrnapp",
     "version": "0.0.1",
     "private": true,
     "scripts": {
@@ -7,10 +7,11 @@
         "ios": "react-native run-ios",
         "start": "react-native start",
         "test": "jest",
-        "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+        "lint": "npx eslint --ext .js,.jsx,.ts,.tsx ./src",
+        "lint:fix": "npx eslint --fix .",
         "lint-staged": "lint-staged",
         "format": "prettier --write 'src/**/*.js'",
-        "prettier": "npx prettire --write .",
+        "prettier": "npx prettier --write .",
         "prepare": "husky install"
     },
     "dependencies": {
@@ -44,10 +45,16 @@
         "react-test-renderer": "17.0.2"
     },
     "lint-staged": {
-        "src/**/*.{js,jsx,ts,tsx,json}": [
+        "*.{js,jsx,ts,tsx}": [
             "npx prettier --write",
             "npx eslint --fix"
         ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run format && npm run lint:fix",
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
     },
     "jest": {
         "preset": "react-native"

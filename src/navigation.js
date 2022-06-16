@@ -1,7 +1,7 @@
 import React from 'react';
-import {/* View, Text, */ Button /* TouchableOpacity */} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { /* View, Text, */ Button /* TouchableOpacity */ } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './pages/Home/HomeScreen';
 import DetailScreen from './pages/Detail/DetailScreen';
 
@@ -26,14 +26,9 @@ function AppNavigator() {
             backgroundColor: '#f4511e',
           },
           // 标题右侧功能组件
-          headerRight: () => (
-            <Button
-              onPress={() => alert('This is a button!')}
-              title="Info"
-              color="red"
-            />
-          ),
-        }}>
+          headerRight: () => <Button onPress={() => alert('This is a button!')} title="Info" color="red" />,
+        }}
+      >
         <Stack.Screen
           name="Home"
           component={HomeScreen}
