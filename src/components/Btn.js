@@ -12,7 +12,7 @@ export default class Btn extends Component {
   render() {
     return (
       <View>
-        <Text onPress={this.toChangeName}>Btn: {this.props.RootStore.name}</Text>
+        <Text onPress={this.toChangeName}>Btn123: {this.props.RootStore.name}</Text>
       </View>
     );
   }
