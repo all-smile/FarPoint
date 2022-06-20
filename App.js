@@ -1,40 +1,44 @@
 import React from 'react';
 // import axios from 'axios';
-import { View, Text, ImageBackground, StyleSheet, ScrollView, SafeAreaView /* ,StatusBar */ } from 'react-native';
+import { ImageBackground, StyleSheet, /* ScrollView */ SafeAreaView /* ,StatusBar */ } from 'react-native';
 import RootStore from './src/mobx';
 import { Provider } from 'mobx-react';
-// import AppNavigator from "./src/navigation";
-import Svg from './src/components/Svg';
-import Btn from './src/components/Btn';
-import { width, height, px2dp } from './src/lib/utils/screenKits';
-import { formatMoneyWithReg } from './src/lib/utils/common';
+// import AppNavigator from './src/navigation';
+import HomeScreen from './src/pages/Home/HomeScreen';
+// import Svg from './src/components/Svg';
+// import Btn from './src/components/Btn';
+import { width, height, px2dp } from './src/utils/screenKits';
+// import { formatMoneyWithReg } from './src/utils/common';
+import settings from './src/settings';
 
-console.log(width, height, px2dp(200));
+const { theme } = settings;
+
+console.log(width, height, px2dp(200), theme);
 // axios.get("https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata").then(console.log)
 
 console.log('调试');
 const App = () => (
   <SafeAreaView style={styles.backgroundStyle}>
-    <ScrollView style={styles.appContainer}>
-      <Provider RootStore={RootStore}>
-        {/* <AppNavigator></AppNavigator> */}
-        <ImageBackground style={styles.homeBg} source={require('./src/assets/img/collection/11.jpg')}>
-          {/* <StatusBar backgroundColor="transparent" translucent={true} /> */}
-          <View style={styles.homeSloganWare}>
-            <Text style={styles.homeSlogan}>给</Text>
-            <Text style={styles.homeSloganBig}>未来</Text>
-            <Text style={styles.homeSlogan}>写</Text>
-            <Text style={styles.homeSlogan}>封</Text>
-            <Text style={styles.homeSlogan}>信</Text>
-            <Text style={styles.homeAddUp}>已寄出 {formatMoneyWithReg(378562)} 封信</Text>
-            <Btn></Btn>
-            <View style={styles.writeBtnWare}>
-              <Svg icon="pen02" size={px2dp(45)} style={styles.writeBtn}></Svg>
-            </View>
+    {/* <ScrollView style={styles.appContainer}> */}
+    <Provider RootStore={RootStore}>
+      {/* <AppNavigator></AppNavigator> */}
+      <ImageBackground style={styles.homeBg} source={require('./src/assets/img/collection/11.jpg')}>
+        <HomeScreen></HomeScreen>
+        {/* <View style={styles.homeSloganWare}>
+          <Text style={styles.homeSlogan}>给</Text>
+          <Text style={styles.homeSloganBig}>未来</Text>
+          <Text style={styles.homeSlogan}>写</Text>
+          <Text style={styles.homeSlogan}>封</Text>
+          <Text style={styles.homeSlogan}>信</Text>
+          <Text style={styles.homeAddUp}>已寄出 {formatMoneyWithReg(378562)} 封信</Text>
+          <View style={styles.writeBtnWare}>
+            <Svg icon="pen" size={px2dp(45)} style={styles.writeBtn}></Svg>
+            <Text style={styles.writeTextColor}>开始撰写</Text>
           </View>
-        </ImageBackground>
-      </Provider>
-    </ScrollView>
+        </View> */}
+      </ImageBackground>
+    </Provider>
+    {/* </ScrollView> */}
   </SafeAreaView>
 );
 
@@ -43,6 +47,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   appContainer: {
+    // width: '100%',
+    // height: '100%',
     // width: width,
     // height: height,
     // borderWidth: 10,
@@ -50,9 +56,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   homeBg: {
+    width: '100%',
+    height: '100%',
     // flex: 1,
-    width: width,
-    height: height,
+    // width: width,
+    // height: height,
     // borderWidth: 10,
     // borderColor: 'blue',
   },
@@ -62,29 +70,36 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   homeSlogan: {
-    color: '#012B6D',
+    color: theme.fontColor,
     fontSize: 52,
   },
   homeSloganBig: {
-    color: '#012B6D',
+    color: theme.fontColor,
     fontSize: 62,
   },
   homeAddUp: {
-    color: '#012B6D',
+    color: theme.fontColor,
     fontSize: 14,
   },
   writeBtnWare: {
     flex: 1,
-    // justifyContent: 'center', // 垂直居中
+    flexDirection: 'row',
+    justifyContent: 'center', // 垂直居中
     alignItems: 'center', // 水平居中
     // backgroundColor: 'blue',
   },
   writeBtn: {
-    // position: 'absolute',
-    bottom: px2dp(80),
+    position: 'absolute',
+    bottom: px2dp(70),
     // left: '50%',
     // justifyContent: 'center',
-    // transform: 'translateX(-50%)',
+    // transform: [{ translate: 50 }],
+  },
+  writeTextColor: {
+    position: 'absolute',
+    bottom: px2dp(40),
+    color: '#fff',
+    fontSize: 14,
   },
 });
 

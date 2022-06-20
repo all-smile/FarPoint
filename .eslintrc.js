@@ -25,6 +25,9 @@ module.exports = {
   plugins: ['react', 'react-native'],
   rules: {
     eqeqeq: 2, // 必须使用 === 和 !==
+    'no-redeclare': 2, // 禁止多次声明同一变量
+    'no-const-assign': 2, // 禁止修改const声明的变量
+    'prefer-const': 2, // 要求使用 const 声明那些声明后不再被修改的变量
     'no-empty-function': 2, // 禁止空函数
     'no-multi-spaces': 2, // 禁止使用多个空格
     'no-trailing-spaces': 2, // 禁止禁用行尾空格
