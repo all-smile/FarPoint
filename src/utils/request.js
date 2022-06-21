@@ -11,18 +11,20 @@
  */
 import axios from 'axios';
 // import moment from "moment";
-import sessionStorage from './session-storage';
-import { isObject, isString } from './validator';
-import { aesKey, inUseMockdata } from '../settings/config';
-import { aesEncrypt, aesDecrypt } from './crypto';
-import { rsaEncrypt, rsaDecrypt } from './jsencrypt';
+// import sessionStorage from './session-storage';
+// import { isObject, isString } from './validator';
+// import config from '../settings/config';
+// import { aesEncrypt, aesDecrypt } from './crypto';
+// import { rsaEncrypt, rsaDecrypt } from './jsencrypt';
+
+// const { aesKey, inUseMockdata } = config;
 
 axios.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8';
 
 // 1. 创建新的axios实例，
 const instance = axios.create({
-  // 公共接口--这里注意后面会讲
-  baseURL: !inUseMockdata ? process.env.VUE_APP_BASEURL + process.env.VUE_APP_PREURL : '',
+  // 公共接口
+  baseURL: '',
   // `withCredentials`指示是否跨站点访问控制请求
   withCredentials: true,
 
@@ -33,23 +35,23 @@ const instance = axios.create({
   // headers`是要发送的自定义 headers
   headers: {
     // 'X-Requested-With': 'XMLHttpRequest',
-    'Cache-Control': 'no-store', // IE 禁用缓存 // 'no-cache'
+    'Cache-Control': 'no-store', // 禁用缓存
   },
   // 超时时间 单位是ms，这里设置了10s的超时时间
-  timeout: 10 * 1000,
+  timeout: 20 * 1000,
   transformRequest: [
     function (data, headers) {
       console.log('transformRequest data = ', data);
       console.log('transformRequest headers = ', headers);
-      if (isObject(data)) {
-        // 一、请求参数加密
-        if (process.env.VUE_APP_RUNTIME === 'prod123') {
-          data = JSON.stringify(data);
-          headers['keyCipher'] = rsaEncrypt(aesKey); // 传输 aes key 密文
-          data = aesEncrypt(data); // 加密请求参数
-        }
-        return data;
-      }
+      // if (isObject(data)) {
+      //   // 一、请求参数加密
+      //   if (process.env.VUE_APP_RUNTIME === 'prod') {
+      //     data = JSON.stringify(data);
+      //     headers['keyCipher'] = rsaEncrypt(aesKey); // 传输 aes key 密文
+      //     data = aesEncrypt(data); // 加密请求参数
+      //   }
+      //   return data;
+      // }
       return data;
     },
   ],
@@ -57,29 +59,29 @@ const instance = axios.create({
     function (data, headers) {
       console.log('transformResponse data = ', data);
       console.log('transformResponse headers = ', headers);
-      if (isString(data)) {
-        try {
-          // 先对 axios 返回的源数据处理
-          data = JSON.parse(data);
-          console.log('data=====', data);
-          /**
-           * 二、获取响应数据之后解密
-           * 判断 headers.keycipher 是否需要解密 (后端在接口报错的情况下，直接返回的是明文，不对错误信息加密)
-           * 1、rsa 解密后端生成的 aes key
-           * 2、aes 解密返参密文
-           */
-          const { keycipher = '' } = headers || {};
-          if (keycipher) {
-            // 解密
-            const resAesKey = rsaDecrypt(keycipher);
-            const dataStr = aesDecrypt(data, resAesKey) || '{}';
-            data = JSON.parse(dataStr);
-          }
-          console.log('res data ====', data);
-        } catch (err) {
-          console.log('transformResponse-err', err);
-        }
-      }
+      // if (isString(data)) {
+      //   try {
+      //     // 先对 axios 返回的源数据处理
+      //     data = JSON.parse(data);
+      //     console.log('data=====', data);
+      //     /**
+      //      * 二、获取响应数据之后解密
+      //      * 判断 headers.keycipher 是否需要解密 (后端在接口报错的情况下，直接返回的是明文，不对错误信息加密)
+      //      * 1、rsa 解密后端生成的 aes key
+      //      * 2、aes 解密返参密文
+      //      */
+      //     const { keycipher = '' } = headers || {};
+      //     if (keycipher) {
+      //       // 解密
+      //       const resAesKey = rsaDecrypt(keycipher);
+      //       const dataStr = aesDecrypt(data, resAesKey) || '{}';
+      //       data = JSON.parse(dataStr);
+      //     }
+      //     console.log('res data ====', data);
+      //   } catch (err) {
+      //     console.log('transformResponse-err', err);
+      //   }
+      // }
     },
   ],
 });
@@ -116,13 +118,13 @@ instance.interceptors.request.use(
       config.headers = {
         ...config.headers,
         timeStamp: new Date().getTime(), // 毫秒数
-        token: sessionStorage.get('authToken') || '',
+        // token: sessionStorage.get('authToken') || '',
       };
       // 必须为开发环境，api内的mock开关开启才生效
-      if (process.env.NODE_ENV === 'development' && inUseMockdata && config.mock && config.mockUrl) {
-        // mock 生效路径
-        config.url = config.mockUrl;
-      }
+      // if (process.env.NODE_ENV === 'development' && inUseMockdata && config.mock && config.mockUrl) {
+      //   // mock 生效路径
+      //   config.url = config.mockUrl;
+      // }
       // 请求路径增加时间戳，防止命中缓存
       config.url += `?timeStamp=${config.headers.timeStamp}`;
       return config;

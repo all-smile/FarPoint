@@ -11,8 +11,11 @@ import { width, height, px2dp } from './src/utils/screenKits';
 // import { formatMoneyWithReg } from './src/utils/common';
 import settings from './src/settings';
 
+import { testApi } from './src/api/index';
+
 const { theme } = settings;
 
+console.log('testApi', testApi);
 console.log(width, height, px2dp(200), theme);
 // axios.get("https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata").then(console.log)
 
