@@ -22,7 +22,7 @@ git clone https://github.com/all-smile/FarPoint.git
 # 进入项目目录
 cd FarPoint
 
-# 安装依赖
+# 安装依赖(该项目采用yarn管理依赖包)
 yarn
 
 # 运行 (已有相应环境下)

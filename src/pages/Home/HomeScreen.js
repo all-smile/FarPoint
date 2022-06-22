@@ -2,30 +2,18 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Svg from '../../components/Svg';
 // import Btn from '../../components/Btn';
+import LinearBtn from '../../components/LinearBtn';
 import { px2dp } from '../../utils/screenKits';
 import { formatMoneyWithReg } from '../../utils/common';
 import settings from '../../settings';
 
 const { theme } = settings;
 
-export default function HomeScreen(/* { navigation } */) {
+export default function HomeScreen() {
+  const handleClick = () => {
+    console.log('666');
+  };
   return (
-    // <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    //   <Text>Home Screen</Text>
-    //   <Button
-    //     title="Go to Details"
-    //     onPress={() =>
-    //       navigation.navigate('Details', {
-    //         itemId: 86,
-    //         otherParam: 'anything you want here',
-    //       })
-    //     }
-    //   ></Button>
-    //   <Button
-    //     title="Update the title"
-    //     onPress={() => navigation.setOptions({ title: 'Updated!', headerTitleAlign: 'center' })}
-    //   />
-    // </View>
     <View style={styles.homeSloganWare}>
       <Text style={styles.homeSlogan}>给</Text>
       <Text style={styles.homeSloganBig}>未来</Text>
@@ -36,6 +24,7 @@ export default function HomeScreen(/* { navigation } */) {
       <View style={styles.writeBtnWare}>
         <Svg icon="pen" size={px2dp(45)} style={styles.writeBtn}></Svg>
         <Text style={styles.writeTextColor}>开始撰写</Text>
+        <LinearBtn onPress={handleClick} style={{ width: px2dp(300), height: px2dp(50) }}></LinearBtn>
       </View>
     </View>
   );

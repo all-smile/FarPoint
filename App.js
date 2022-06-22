@@ -1,14 +1,10 @@
 import React from 'react';
-// import axios from 'axios';
 import { ImageBackground, StyleSheet, /* ScrollView */ SafeAreaView /* ,StatusBar */ } from 'react-native';
 import RootStore from './src/mobx';
 import { Provider } from 'mobx-react';
 // import AppNavigator from './src/navigation';
 import HomeScreen from './src/pages/Home/HomeScreen';
-// import Svg from './src/components/Svg';
-// import Btn from './src/components/Btn';
 import { width, height, px2dp } from './src/utils/screenKits';
-// import { formatMoneyWithReg } from './src/utils/common';
 import settings from './src/settings';
 
 import { testApi } from './src/api/index';
@@ -24,9 +20,7 @@ console.log(
     })
 );
 console.log(width, height, px2dp(200), theme);
-// axios.get("https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata").then(console.log)
 
-console.log('调试');
 const App = () => (
   <SafeAreaView style={styles.backgroundStyle}>
     {/* <ScrollView style={styles.appContainer}> */}
@@ -34,18 +28,6 @@ const App = () => (
       {/* <AppNavigator></AppNavigator> */}
       <ImageBackground style={styles.homeBg} source={require('./src/assets/img/collection/11.jpg')}>
         <HomeScreen></HomeScreen>
-        {/* <View style={styles.homeSloganWare}>
-          <Text style={styles.homeSlogan}>给</Text>
-          <Text style={styles.homeSloganBig}>未来</Text>
-          <Text style={styles.homeSlogan}>写</Text>
-          <Text style={styles.homeSlogan}>封</Text>
-          <Text style={styles.homeSlogan}>信</Text>
-          <Text style={styles.homeAddUp}>已寄出 {formatMoneyWithReg(378562)} 封信</Text>
-          <View style={styles.writeBtnWare}>
-            <Svg icon="pen" size={px2dp(45)} style={styles.writeBtn}></Svg>
-            <Text style={styles.writeTextColor}>开始撰写</Text>
-          </View>
-        </View> */}
       </ImageBackground>
     </Provider>
     {/* </ScrollView> */}
