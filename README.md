@@ -44,3 +44,14 @@ ios: yarn ios
 
 举例
 git commit -m 'feat: add list'
+
+# 实现功能
+
+# 整体效果演示
+
+# 参考文档
+
+[React-native](https://reactnative.cn/docs/next/intro-react)
+[mobx](https://cn.mobx.js.org/)
+[react-navigation](https://reactnavigation.org/)
+[axios](https://www.axios-http.cn/docs/intro)

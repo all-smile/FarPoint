@@ -6,6 +6,7 @@ export function testApi() {
   return request({
     url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
     method: 'get',
+    mock: false,
   });
 }
 
@@ -13,6 +14,7 @@ export function testApi02(params = {}) {
   return request({
     url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
     method: 'post',
+    mock: false,
     data: params,
   });
 }

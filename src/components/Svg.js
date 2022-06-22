@@ -9,11 +9,11 @@ export default class Svg extends Component {
     const { color, size, style, icon } = this.props;
     console.log(color);
 
-    let svgXmlData = svgs[icon];
+    const svgXmlData = svgs[icon];
     // console.log('svgXmlData=', svgXmlData);
 
     if (!svgXmlData) {
-      let err_msg = `没有"${icon}"这个svg文件`;
+      const err_msg = `没有"${icon}"这个svg文件`;
       throw new Error(err_msg);
     }
     return <SvgXml width={size} height={size} xml={svgXmlData} fill={color} style={style} />;

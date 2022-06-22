@@ -15,7 +15,14 @@ import { testApi } from './src/api/index';
 
 const { theme } = settings;
 
-console.log('testApi', testApi);
+console.log(
+  'testApi',
+  testApi()
+    .then((res) => console.log('res=======', res))
+    .catch((err) => {
+      console.log('err======', err);
+    })
+);
 console.log(width, height, px2dp(200), theme);
 // axios.get("https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata").then(console.log)
 

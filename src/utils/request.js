@@ -12,12 +12,12 @@
 import axios from 'axios';
 // import moment from "moment";
 // import sessionStorage from './session-storage';
-// import { isObject, isString } from './validator';
-// import config from '../settings/config';
-// import { aesEncrypt, aesDecrypt } from './crypto';
-// import { rsaEncrypt, rsaDecrypt } from './jsencrypt';
+import { isObject, isString } from './validator';
+import config from '../settings/config';
+import { aesEncrypt, aesDecrypt } from './crypto';
+import { rsaEncrypt, rsaDecrypt } from './jsencrypt';
 
-// const { aesKey, inUseMockdata } = config;
+const { aesKey, inUseMockdata } = config;
 
 axios.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8';
 
@@ -43,15 +43,15 @@ const instance = axios.create({
     function (data, headers) {
       console.log('transformRequest data = ', data);
       console.log('transformRequest headers = ', headers);
-      // if (isObject(data)) {
-      //   // 一、请求参数加密
-      //   if (process.env.VUE_APP_RUNTIME === 'prod') {
-      //     data = JSON.stringify(data);
-      //     headers['keyCipher'] = rsaEncrypt(aesKey); // 传输 aes key 密文
-      //     data = aesEncrypt(data); // 加密请求参数
-      //   }
-      //   return data;
-      // }
+      if (isObject(data)) {
+        // 一、请求参数加密
+        if (process.env.VUE_APP_RUNTIME === 'prod') {
+          data = JSON.stringify(data);
+          headers['keyCipher'] = rsaEncrypt(aesKey); // 传输 aes key 密文
+          data = aesEncrypt(data); // 加密请求参数
+        }
+        return data;
+      }
       return data;
     },
   ],
@@ -59,29 +59,31 @@ const instance = axios.create({
     function (data, headers) {
       console.log('transformResponse data = ', data);
       console.log('transformResponse headers = ', headers);
-      // if (isString(data)) {
-      //   try {
-      //     // 先对 axios 返回的源数据处理
-      //     data = JSON.parse(data);
-      //     console.log('data=====', data);
-      //     /**
-      //      * 二、获取响应数据之后解密
-      //      * 判断 headers.keycipher 是否需要解密 (后端在接口报错的情况下，直接返回的是明文，不对错误信息加密)
-      //      * 1、rsa 解密后端生成的 aes key
-      //      * 2、aes 解密返参密文
-      //      */
-      //     const { keycipher = '' } = headers || {};
-      //     if (keycipher) {
-      //       // 解密
-      //       const resAesKey = rsaDecrypt(keycipher);
-      //       const dataStr = aesDecrypt(data, resAesKey) || '{}';
-      //       data = JSON.parse(dataStr);
-      //     }
-      //     console.log('res data ====', data);
-      //   } catch (err) {
-      //     console.log('transformResponse-err', err);
-      //   }
-      // }
+      if (isString(data)) {
+        try {
+          // 先对 axios 返回的源数据处理
+          data = JSON.parse(data);
+          console.log('data=====', data);
+          /**
+           * 二、获取响应数据之后解密
+           * 判断 headers.keycipher 是否需要解密 (后端在接口报错的情况下，直接返回的是明文，不对错误信息加密)
+           * 1、rsa 解密后端生成的 aes key
+           * 2、aes 解密返参密文
+           */
+          const { keycipher = '' } = headers || {};
+          if (keycipher) {
+            // 解密
+            const resAesKey = rsaDecrypt(keycipher);
+            const dataStr = aesDecrypt(data, resAesKey) || '{}';
+            data = JSON.parse(dataStr);
+          }
+          console.log('res data ====', data);
+          return data;
+        } catch (err) {
+          console.log('transformResponse-err', err);
+          return data;
+        }
+      }
     },
   ],
 });
@@ -113,7 +115,6 @@ const codeMessage = {
 instance.interceptors.request.use(
   (config) => {
     // 在发送请求之前做些什么
-    // console.log('request', config);
     if (config.url) {
       config.headers = {
         ...config.headers,
@@ -121,10 +122,10 @@ instance.interceptors.request.use(
         // token: sessionStorage.get('authToken') || '',
       };
       // 必须为开发环境，api内的mock开关开启才生效
-      // if (process.env.NODE_ENV === 'development' && inUseMockdata && config.mock && config.mockUrl) {
-      //   // mock 生效路径
-      //   config.url = config.mockUrl;
-      // }
+      if (process.env.NODE_ENV === 'development' && inUseMockdata && config.mock && config.mockUrl) {
+        // mock 生效路径
+        config.url = config.mockUrl;
+      }
       // 请求路径增加时间戳，防止命中缓存
       config.url += `?timeStamp=${config.headers.timeStamp}`;
       return config;
@@ -135,7 +136,6 @@ instance.interceptors.request.use(
   (error) => {
     // 对请求错误做些什么
     console.log('request-err', error);
-    console.error(error);
     return Promise.reject(error);
   }
 );
@@ -146,6 +146,29 @@ const retryDelay = 200; // 重发时延
 // 3. 添加响应拦截器
 instance.interceptors.response.use(
   (response) => {
+    /* response: {
+      // `data` 由服务器提供的响应
+      data: {},
+
+      // `status` 来自服务器响应的 HTTP 状态码
+      status: 200,
+
+      // `statusText` 来自服务器响应的 HTTP 状态信息
+      statusText: 'OK',
+
+      // `headers` 是服务器响应头
+      // 所有的 header 名称都是小写，而且可以使用方括号语法访问
+      // 例如: `response.headers['content-type']`
+      headers: {},
+
+      // `config` 是 `axios` 请求的配置信息
+      config: {},
+
+      // `request` 是生成此响应的请求
+      // 在node.js中它是最后一个ClientRequest实例 (in redirects)，
+      // 在浏览器中则是 XMLHttpRequest 实例
+      request: {}
+    } */
     // 对响应数据做点什么
     return response.data;
   },
