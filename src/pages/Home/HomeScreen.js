@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     // borderColor: 'blue',
   },
   homeSloganWare: {
-    padding: 40,
+    padding: 50,
     textAlign: 'center',
     flex: 1,
   },

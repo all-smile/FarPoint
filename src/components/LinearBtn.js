@@ -1,6 +1,7 @@
 import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { Component } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
+import { px2dp } from '../utils/screenKits';
 
 export default class LinearBtn extends Component {
   // props默认值
@@ -31,14 +32,14 @@ export default class LinearBtn extends Component {
 const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 15,
+    paddingLeft: px2dp(15),
+    paddingRight: px2dp(15),
+    borderRadius: px2dp(20),
     justifyContent: 'center',
     alignItems: 'center',
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: px2dp(18),
     fontFamily: 'Gill Sans',
     // textAlign: 'center',
     color: '#ffffff',
