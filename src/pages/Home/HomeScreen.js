@@ -6,6 +6,7 @@ import LinearBtn from '../../components/LinearBtn';
 import { px2dp } from '../../utils/screenKits';
 import { formatMoneyWithReg } from '../../utils/common';
 import settings from '../../settings';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 const { theme } = settings;
 
@@ -21,6 +22,7 @@ export default function HomeScreen() {
       <Text style={styles.homeSlogan}>封</Text>
       <Text style={styles.homeSlogan}>信</Text>
       <Text style={styles.homeAddUp}>已寄出 {formatMoneyWithReg(378562)} 封信</Text>
+      <Icon name="rocket" size={30} color="#900" />
       <View style={styles.writeBtnWare}>
         <Svg icon="pen" size={px2dp(45)} style={styles.writeBtn}></Svg>
         <Text style={styles.writeTextColor}>开始撰写</Text>
