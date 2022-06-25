@@ -55,3 +55,4 @@ git commit -m 'feat: add list'
 [mobx](https://cn.mobx.js.org/)
 [react-navigation](https://reactnavigation.org/)
 [axios](https://www.axios-http.cn/docs/intro)
+[react-native-vector-icons](https://oblador.github.io/react-native-vector-icons/)
