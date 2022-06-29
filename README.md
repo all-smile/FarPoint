@@ -1,6 +1,7 @@
 # FarPoint 远点
 
-采用 react-native 及其相关生态开发的手机端软件，主要功能是给未来写封信
+采用 react-native 及其相关生态开发的手机端软件，主要功能是给未来写封信。
+使用 react-native 进行界面、交互开发，后端服务采用 Golang 编写
 
 ## 核心依赖
 
