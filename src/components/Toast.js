@@ -5,7 +5,7 @@ import { /* StyleSheet, */ ToastAndroid } from 'react-native';
 class Toast extends Component {
   render() {
     const { visible = false, message = '', delay = 1000 } = this.props;
-    console.log(visible, message);
+    // console.log(visible, message);
     if (visible) {
       // ToastAndroid.showWithGravityAndOffset(
       //   message,

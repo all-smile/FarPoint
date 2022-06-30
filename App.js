@@ -7,22 +7,15 @@ import HomeScreen from '~/pages/Home/HomeScreen';
 import { width, height, px2dp } from '~/utils/screenKits';
 import settings from '~/settings';
 import { testApi } from '~/api/index';
-console.log('testApi=', testApi);
-
-import Loading from '~/components/Loading';
-console.log('Loading=', Loading);
 
 const { theme } = settings;
 
-console.log(
-  'testApi',
-  testApi()
-    .then((res) => console.log('res=======', res))
-    .catch((err) => {
-      console.log('err======', err);
-    })
-);
-console.log(width, height, px2dp(200), theme);
+testApi()
+  .then(/* (res) => console.log('res=======', res) */)
+  .catch((err) => {
+    console.log('err======', err);
+  });
+console.log(width, height, px2dp(200));
 
 const App = () => (
   <SafeAreaView style={styles.backgroundStyle}>
@@ -31,7 +24,6 @@ const App = () => (
       {/* <AppNavigator></AppNavigator> */}
       <ImageBackground style={styles.homeBg} source={require('./src/assets/img/collection/11.jpg')}>
         <HomeScreen></HomeScreen>
-        {/* <Loading isLoading={true}></Loading> */}
       </ImageBackground>
     </Provider>
     {/* </ScrollView> */}

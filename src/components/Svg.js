@@ -7,7 +7,6 @@ import svgs from '~/assets/svgs.js';
 export default class Svg extends Component {
   render() {
     const { color, size, style, icon } = this.props;
-    console.log(color);
 
     const svgXmlData = svgs[icon];
     // console.log('svgXmlData=', svgXmlData);

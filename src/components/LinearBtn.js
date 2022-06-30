@@ -10,7 +10,6 @@ export default class LinearBtn extends Component {
     textStyle: {},
   };
   render() {
-    console.log(this.props);
     return (
       <TouchableOpacity
         onPress={this.props.onPress}
