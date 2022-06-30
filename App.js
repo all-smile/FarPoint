@@ -1,13 +1,16 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, /* ScrollView */ SafeAreaView /* ,StatusBar */ } from 'react-native';
-import RootStore from './src/mobx';
+import RootStore from '~/mobx';
 import { Provider } from 'mobx-react';
 // import AppNavigator from './src/navigation';
-import HomeScreen from './src/pages/Home/HomeScreen';
-import { width, height, px2dp } from './src/utils/screenKits';
-import settings from './src/settings';
+import HomeScreen from '~/pages/Home/HomeScreen';
+import { width, height, px2dp } from '~/utils/screenKits';
+import settings from '~/settings';
+import { testApi } from '~/api/index';
+console.log('testApi=', testApi);
 
-import { testApi } from './src/api/index';
+import Loading from '~/components/Loading';
+console.log('Loading=', Loading);
 
 const { theme } = settings;
 
@@ -28,6 +31,7 @@ const App = () => (
       {/* <AppNavigator></AppNavigator> */}
       <ImageBackground style={styles.homeBg} source={require('./src/assets/img/collection/11.jpg')}>
         <HomeScreen></HomeScreen>
+        {/* <Loading isLoading={true}></Loading> */}
       </ImageBackground>
     </Provider>
     {/* </ScrollView> */}

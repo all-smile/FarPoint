@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, Animated, Easing } from 'react-native';
 import { Overlay } from '@rneui/themed';
 import Icon from 'react-native-vector-icons/dist/AntDesign';
-import { px2dp } from '../utils/screenKits';
+import { px2dp } from '~/utils/screenKits';
 
 export default class Loading extends Component {
   constructor(props) {

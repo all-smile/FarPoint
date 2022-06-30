@@ -13,7 +13,7 @@ import axios from 'axios';
 // import moment from "moment";
 // import sessionStorage from './session-storage';
 import { isObject, isString } from './validator';
-import config from '../settings/config';
+import config from '~/settings/config';
 import { aesEncrypt, aesDecrypt } from './crypto';
 import { rsaEncrypt, rsaDecrypt } from './jsencrypt';
 
@@ -41,8 +41,8 @@ const instance = axios.create({
   timeout: 20 * 1000,
   transformRequest: [
     function (data, headers) {
-      console.log('transformRequest data = ', data);
-      console.log('transformRequest headers = ', headers);
+      // console.log('transformRequest data = ', data);
+      // console.log('transformRequest headers = ', headers);
       if (isObject(data)) {
         // 一、请求参数加密
         if (process.env.VUE_APP_RUNTIME === 'prod') {
@@ -57,13 +57,13 @@ const instance = axios.create({
   ],
   transformResponse: [
     function (data, headers) {
-      console.log('transformResponse data = ', data);
-      console.log('transformResponse headers = ', headers);
+      // console.log('transformResponse data = ', data);
+      // console.log('transformResponse headers = ', headers);
       if (isString(data)) {
         try {
           // 先对 axios 返回的源数据处理
           data = JSON.parse(data);
-          console.log('data=====', data);
+          // console.log('data=====', data);
           /**
            * 二、获取响应数据之后解密
            * 判断 headers.keycipher 是否需要解密 (后端在接口报错的情况下，直接返回的是明文，不对错误信息加密)
@@ -77,7 +77,7 @@ const instance = axios.create({
             const dataStr = aesDecrypt(data, resAesKey) || '{}';
             data = JSON.parse(dataStr);
           }
-          console.log('res data ====', data);
+          // console.log('res data ====', data);
           return data;
         } catch (err) {
           console.log('transformResponse-err', err);

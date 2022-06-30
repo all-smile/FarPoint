@@ -1,6 +1,6 @@
 // 接口调用封装， 可按模块拆分开
 
-import request from '../utils/request';
+import request from '~/utils/request';
 
 export function testApi() {
   return request({

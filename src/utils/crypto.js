@@ -1,4 +1,4 @@
-import config from '../settings/config';
+import config from '~/settings/config';
 const CryptoJS = require('crypto-js'); // 引用AES源码js
 
 const { aesKey, aesIV } = config;

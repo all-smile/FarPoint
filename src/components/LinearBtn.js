@@ -1,7 +1,7 @@
 import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { Component } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import { px2dp } from '../utils/screenKits';
+import { px2dp } from '~/utils/screenKits';
 
 export default class LinearBtn extends Component {
   // props默认值

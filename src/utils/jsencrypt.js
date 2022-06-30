@@ -1,6 +1,6 @@
 // 非对称加密 RSA
 import JSEncrypt from 'jsencrypt';
-import config from '../settings/config';
+import config from '~/settings/config';
 
 const { rsaPubKey, rsaPriKey } = config;
 
